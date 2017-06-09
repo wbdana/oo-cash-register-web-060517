@@ -8,6 +8,8 @@ class CashRegister
     @total = 0
     @discount = discount
     @items = []
+    @last_price = nil
+    @last_count = nil
   end
 
   def discount
@@ -15,15 +17,12 @@ class CashRegister
   end
 
   def add_item(item, price, count=1)
-    @price = price
-    @count = count
-    @last_item = item
     @last_price = price
     @last_count = count
-    @count.times do
+    count.times do
       @items << item
     end
-    @total = @total + @price * @count
+    @total += price * count
   end
 
   def apply_discount
